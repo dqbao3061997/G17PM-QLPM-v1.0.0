@@ -1,0 +1,121 @@
+﻿@model IEnumerable<MvcAppMain.Models.PhieuKhamBenh>
+
+@{
+    ViewBag.Title = "DanhSachBenhNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<fieldset>
+    <legend>
+        @if (Session["Roles"].Equals("admin"))
+
+    {
+        <h2>DANH SÁCH BỆNH NHÂN</h2>
+
+        <p>
+            @Html.ActionLink("Đăng Ký Bệnh Nhân", "Create")
+        </p>
+    using (Html.BeginForm())
+    {
+        <p>
+            Tìm Theo Tên: @Html.TextBox("SearchString")
+            <input type="submit" value="Tìm Kiếm" />
+        </p>
+}
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.Label("Họ Tên")
+            </th>
+            <th>
+                @Html.Label("Ngày Khám")
+            </th>
+            <th>
+                @Html.Label("Bệnh")
+            </th>
+            <th>
+                @Html.Label("Triệu Chứng")
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoSoBenhNhan.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayKham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Benh.TenBenh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrieuChung)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { id = item.ID_PhieuKham }) |
+                @Html.ActionLink("Xem thông tin chi tiết", "Details", new { id = item.ID_PhieuKham }) |
+                @Html.ActionLink("Xóa", "Delete", new { id = item.ID_PhieuKham })
+            </td>
+        </tr>
+}
+
+    </table>
+}
+else
+{
+    <h2>DANH SÁCH BỆNH NHÂN</h2>
+
+    <p>
+        @Html.ActionLink("Đăng Ký Bệnh Nhân", "Create")
+    </p>
+using (Html.BeginForm())
+{
+    <p>
+        Tìm Theo Tên: @Html.TextBox("SearchString")
+        <input type="submit" value="Tìm Kiếm" />
+    </p>
+}
+    <table class="table">
+        <tr>
+            <th>
+                @Html.Label("Họ Tên")
+            </th>
+            <th>
+                @Html.Label("Ngày Khám")
+            </th>
+            <th>
+                @Html.Label("Bệnh")
+            </th>
+            <th>
+                @Html.Label("Triệu Chứng")
+            </th>
+            
+        </tr>
+
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HoSoBenhNhan.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayKham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Benh.TenBenh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrieuChung)
+            </td>
+            
+        </tr>
+}
+
+    </table>
+}
+
+
+    </legend>
+            </fieldset>

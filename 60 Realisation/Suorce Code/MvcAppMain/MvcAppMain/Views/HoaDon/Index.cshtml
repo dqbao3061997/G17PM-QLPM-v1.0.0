@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MvcAppMain.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>HÓA ĐƠN</h2>
+
+<p>
+    @Html.ActionLink("Backup hoá đơn", "Backup")
+    @*<br />
+    @Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Họ Tên")
+        </th>
+        <th>
+            @Html.Label("Ngày Khám")
+        </th>
+        <th>
+            @Html.Label("Tiền Khám")
+        </th>
+        <th>
+            @Html.Label("Tiền Thuốc")
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhieuKhamBenh.HoSoBenhNhan.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhieuKhamBenh.NgayKham)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TienKham)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TienThuoc)
+        </td>
+       
+        <td>
+            @Html.ActionLink("Chỉnh sửa thông tin", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Xem thông tin chi tiết", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Xóa", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
